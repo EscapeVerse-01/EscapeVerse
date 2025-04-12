@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .glowing-title {
+            text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+        }
+
+        .team-member {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .team-member.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .team-member:hover {
+            box-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea, 0 0 60px #00ffea;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center p-8">
+    <nav class="w-full flex justify-between items-center p-4 bg-gray-800 shadow-lg">
+        <h1 class="text-xl font-bold glowing-title">EscapeVerse</h1>
+        <ul class="flex gap-6">
+            <li><a href="homepage.html" class="hover:text-gray-400">Home</a></li>
+            <li><a href="subjects.html" class="hover:text-gray-400">Select Your Subject</a></li>
+            <li><a href="quiz.html" class="hover:text-gray-400">Know Your Level</a></li>
+            <li><a href="leaderboard.html" class="hover:text-gray-400">Leaderboard</a></li>
+            <li><a href="about.html" class="hover:text-gray-400">About Us</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="text-4xl font-bold mt-6 fade-in">About Us</h1>
+    <div class="max-w-4xl bg-gray-800 p-6 rounded-lg shadow-lg mt-6 text-center fade-in">
+        <p class="text-lg text-gray-300">Welcome to <span class="font-bold text-blue-400">EscapeVerse</span>, an interactive learning platform that turns studying into an adventure!</p>
+        <p class="mt-4 text-gray-400">EscapeVerse is an innovative web app designed to make learning fun and engaging. It combines AI-powered quizzes, interactive puzzles, and an escape-room-style gameplay to help users master technical subjects. Players can select a subject, take an AI-generated quiz to assess their level, and then solve progressively harder challenges. A leaderboard system keeps the competition alive, motivating users to improve their skills.</p>
+        <h2 class="text-2xl font-semibold mt-6 text-blue-400">Meet the Team</h2>
+        <div class="mt-4 flex flex-wrap justify-center gap-6">
+            <div class="bg-gray-700 p-4 rounded-lg w-64 text-center team-member">
+                <img src="images/avatar1.png" alt="Team Member" class="w-20 h-20 mx-auto rounded-full mb-2">
+                <h3 class="text-lg font-bold">Aashi Bansal</h3>
+                <p class="text-gray-400">Founder & Developer</p>
+            </div>
+            <div class="bg-gray-700 p-4 rounded-lg w-64 text-center team-member">
+                <img src="images/avatar2.png" alt="Team Member" class="w-20 h-20 mx-auto rounded-full mb-2">
+                <h3 class="text-lg font-bold">Prachi Rawat</h3>
+                <p class="text-gray-400">Founder & Developer</p>
+            </div>
+            <div class="bg-gray-700 p-4 rounded-lg w-64 text-center team-member">
+                <img src="images/avatar3.png" alt="Team Member" class="w-20 h-20 mx-auto rounded-full mb-2">
+                <h3 class="text-lg font-bold">Anshika Popli</h3>
+                <p class="text-gray-400">Founder & Developer</p>
+            </div>
+        </div>
+        <p class="mt-6 text-gray-400">Join us and transform your learning experience. 🚀</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const teamMembers = document.querySelectorAll(".team-member");
+            teamMembers.forEach((member, index) => {
+                setTimeout(() => {
+                    member.classList.add("show");
+                }, index * 300);
+            });
+        });
+    </script>
+</body>
+</html>

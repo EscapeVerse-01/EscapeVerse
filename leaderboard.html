@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard</title>
+  <style>
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #00ffea;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .leaderboard-container {
+      width: 90%;
+      max-width: 800px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .leaderboard-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .leaderboard-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .leaderboard-entry:last-child {
+      border-bottom: none;
+    }
+
+    .rank {
+      width: 50px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .name {
+      flex-grow: 1;
+      padding-left: 10px;
+    }
+
+    .score {
+      width: 80px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      width: 150px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar div {
+      height: 100%;
+      background: #00ffea;
+      transition: width 0.5s ease;
+    }
+    .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #16213e;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+    .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: color 0.3s ease;
+        }
+    .navbar a:hover {
+            color: #00c3ff;
+        }
+    .next-btn:hover {
+            background-color: #008abf;
+        }
+  </style>
+</head>
+<body>
+  <nav class="navbar  py-4 w-full fixed top-0 flex justify-around text-white">
+    <a href="homepage.html">Home</a>
+    <a href="subjects.html">Select Your Subject</a>
+    <a href="commuity.html">Community Forum</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="about.html">About Us</a>
+</nav>
+  <h1>🏆 Leaderboard</h1>
+  <div class="leaderboard-container">
+    <div class="leaderboard-header">
+      <span class="rank">Rank</span>
+      <span class="name">Player</span>
+      <span class="score">Score</span>
+      <span>Progress</span>
+    </div>
+    <div id="leaderboard"></div>
+  </div>
+
+  <script>
+    let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+
+    if (leaderboard.length < 10) {
+      leaderboard = [
+        { name: "Abhishek Kapoor", score: 92 },
+        { name: "Ananya Panday", score: 88 },
+        { name: "Sri Devi", score: 86 },
+        { name: "Alia Bhatt", score: 82 },
+        { name: "Sameer Khan", score: 76 },
+        { name: "Abbas Khan", score: 73 },
+        { name: "Kiara Advani", score: 73 },
+        { name: "Sidhart Malhotra", score: 71 },
+        { name: "Khushi Chauhan", score: 68 },
+        { name: "David Lunceford", score: 66 }
+      ];
+    }
+
+    leaderboard.sort((a, b) => b.score - a.score);
+    const boardDiv = document.getElementById('leaderboard');
+
+    leaderboard.slice(0, 10).forEach((entry, index) => {
+      const div = document.createElement('div');
+      div.className = 'leaderboard-entry';
+      div.style.animationDelay = `${0.2 * (index + 1)}s`;
+      div.innerHTML = `
+        <span class="rank">${index + 1}${getOrdinal(index + 1)}</span>
+        <span class="name">${entry.name}</span>
+        <span class="score">${entry.score}%</span>
+        <div class="progress-bar"><div style="width: ${entry.score}%;"></div></div>
+      `;
+      boardDiv.appendChild(div);
+    });
+
+    function getOrdinal(n) {
+      if (n % 10 === 1 && n % 100 !== 11) return "ST";
+      if (n % 10 === 2 && n % 100 !== 12) return "ND";
+      if (n % 10 === 3 && n % 100 !== 13) return "RD";
+      return "TH";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between">
+            <h1 class="text-xl font-bold">Community Forum</h1>
+            <a href="homepage.html">Home</a>
+            <a href="subjects.html">Select Your Subject</a>
+            <a href="#level-selection">Know Your Level</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#about">About Us</a>
+            <a href="#about">My Profile</a>
+        </div>
+    </nav>
+
+    <!-- Posts Section -->
+    <div id="postsContainer" class="container mx-auto mt-6 p-4 space-y-4">
+        <!-- Posts will be loaded here -->
+    </div>
+
+    <!-- Post Form -->
+    <div class="container mx-auto mt-6 p-4">
+        <div class="bg-gray-800 p-4 rounded-md">
+            <h2 class="text-lg font-semibold">Start a Discussion</h2>
+            <textarea id="postContent" class="w-full p-2 mt-2 bg-gray-700 rounded-md text-white" rows="3" placeholder="Write something..."></textarea>
+            <button onclick="addPost()" class="mt-3 bg-blue-500 px-4 py-2 rounded-md">Post</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", loadPosts);
+        
+        function addPost() {
+            let content = document.getElementById("postContent").value;
+            if (content.trim() === "") return;
+
+            let post = { content: content, likes: 0, replies: [] };
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+            posts.unshift(post);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            
+            renderPosts();
+            document.getElementById("postContent").value = "";
+        }
+
+        function renderPosts() {
+            let postsContainer = document.getElementById("postsContainer");
+            postsContainer.innerHTML = "";
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+            posts.forEach((post, index) => {
+                let postContainer = document.createElement("div");
+                postContainer.className = "bg-gray-800 p-4 rounded-md shadow-md";
+                postContainer.innerHTML = `
+                    <p class="text-lg">${post.content}</p>
+                    <div class="mt-3 flex space-x-3">
+                        <button onclick="likePost(${index})" class="text-green-400">👍 Like <span class="like-count">${post.likes}</span></button>
+                        <button onclick="toggleReplyBox(this)" class="text-blue-400">💬 Reply</button>
+                    </div>
+                    <div class="hidden mt-2">
+                        <textarea class="w-full p-2 bg-gray-700 rounded-md text-white" rows="2" placeholder="Write a reply..."></textarea>
+                        <button onclick="addReply(${index}, this)" class="mt-2 bg-blue-400 px-3 py-1 rounded-md">Reply</button>
+                    </div>
+                    <div class="replies mt-2 space-y-2">
+                        ${post.replies.map(reply => `<div class="bg-gray-700 p-2 rounded-md">${reply}</div>`).join("")}
+                    </div>
+                `;
+                postsContainer.appendChild(postContainer);
+            });
+        }
+
+        function toggleReplyBox(button) {
+            button.parentElement.nextElementSibling.classList.toggle("hidden");
+        }
+
+        function addReply(index, button) {
+            let replyBox = button.previousElementSibling;
+            let replyText = replyBox.value.trim();
+            if (replyText === "") return;
+
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+            posts[index].replies.push(replyText);
+            localStorage.setItem("posts", JSON.stringify(posts));
+            
+            renderPosts();
+        }
+
+        function likePost(index) {
+            let posts = JSON.parse(localStorage.getItem("posts")) || [];
+            posts[index].likes += 1;
+            localStorage.setItem("posts", JSON.stringify(posts));
+            
+            renderPosts();
+        }
+
+        function loadPosts() {
+            renderPosts();
+        }
+    </script>
+
+</body>
+</html>

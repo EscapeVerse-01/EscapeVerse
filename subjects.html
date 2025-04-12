@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: radial-gradient(circle at center, #001f3f, #000);
+            font-family: 'Orbitron', sans-serif;
+            overflow: auto;
+            color: white;
+        }
+        .neon-button {
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .neon-button:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+            transform: scale(1.05);
+        }
+        .popup, .level-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+        img {
+            width: 100%; /* or set a specific width */
+            height: auto; /* maintains the aspect ratio */
+            object-fit: contain; /* ensures the full image is visible */
+            }
+    </style>
+</head>
+<body class="h-screen flex flex-col items-center relative">
+    <nav class="navbar bg-gray-900 py-4 w-full fixed top-0 flex justify-around text-white">
+        <a href="homepage.html">Home</a>
+        <a href="#level-selection">Know Your Level</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="about.html">About Us</a>
+    </nav>
+    
+    <h1 class="text-4xl font-extrabold mt-20">Subjects</h1>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="python.jpeg" alt="Python" class="w-full h-50 object-cover rounded-lg object-fit-contain">
+            <h2 class="text-2xl font-semibold text-blue-400">Python</h2>
+            <p>Learn Python from basics to advanced concepts.</p>
+        </div>
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="sql.jpg" alt="SQL" class="w-full h-50 object-cover rounded-lg">
+            <h2 class="text-2xl font-semibold text-yellow-400">SQL</h2>
+            <p>Learn database management with SQL.</p>
+        </div>
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="cpp.jpg" alt="C++" class="w-full h-50 object-cover rounded-lg">
+            <h2 class="text-2xl font-semibold text-purple-400">C++</h2>
+            <p>Master object-oriented programming in C++.</p>
+        </div>
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="java.png" alt="Java" class="w-full h-50 object-cover rounded-lg">
+            <h2 class="text-2xl font-semibold text-orange-400">Java</h2>
+            <p>Build powerful applications with Java.</p>
+        </div>
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="ml.jpg" alt="Machine Learning" class="w-full h-50 object-cover rounded-lg">
+            <h2 class="text-2xl font-semibold text-teal-400">Machine Learning</h2>
+            <p>Dive into data science and ML algorithms.</p>
+        </div>
+        <div class="p-6 bg-gray-900 neon-button rounded-xl cursor-pointer" onclick="openPopup()">
+            <img src="dsa.jpg" alt="DSA" class="w-full h-50 object-cover rounded-lg">
+            <h2 class="text-2xl font-semibold text-cyan-400">Data Structures & Algorithms</h2>
+            <p>Strengthen your problem-solving skills.</p>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <h2>Select an Option</h2>
+        <button class="neon-button px-4 py-2 mt-4" onclick="openLevelPopup()">Know Your Level Quiz</button>
+        <button class="neon-button px-4 py-2 mt-4" onclick="window.location.href='escapepython.html'">Escape Rooms</button>
+        <div class="mt-4">
+        <button class="neon-button px-4 py-2 mt-4" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    
+    <div class="overlay" id="levelOverlay" onclick="closeLevelPopup()"></div>
+    <div class="level-popup" id="levelPopup">
+        <h2>Choose Your Level</h2>
+        <button class="neon-button px-4 py-2 mt-4" data-level="beginner" onclick="selectLevel(this)">Beginner</button>
+        <button class="neon-button px-4 py-2 mt-4" data-level="intermediate" onclick="selectLevel(this)">Intermediate</button>
+        <button class="neon-button px-4 py-2 mt-4" data-level="advanced" onclick="selectLevel(this)">Advanced</button>
+        <div class="mt-4">
+        <button class="neon-button px-4 py-2 mt-4 hidden" id="startGame" onclick="window.location.href='quiz2.html'">Start Quiz</button>
+        <button class="neon-button px-4 py-2 mt-4" onclick="closeLevelPopup()">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        function openPopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function openLevelPopup() {
+            closePopup();
+            document.getElementById('levelPopup').style.display = 'block';
+            document.getElementById('levelOverlay').style.display = 'block';
+        }
+
+        function closeLevelPopup() {
+            document.getElementById('levelPopup').style.display = 'none';
+            document.getElementById('levelOverlay').style.display = 'none';
+        }
+
+        function selectLevel(button) {
+            const level = button.getAttribute("data-level");
+            localStorage.setItem("selectedLevel", level);
+            document.getElementById("startGame").classList.remove("hidden");
+        }
+
+
+    </script>
+</body>
+</html>

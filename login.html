@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000;
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .input-field:focus {
+            box-shadow: 0 0 15px #00ffea;
+            border-color: #00ffea;
+        }
+        .form-container {
+            box-shadow: 0 0 25px rgba(0, 255, 234, 0.8);
+            border: 2px solid #00ffea;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+        .toggle-button {
+            cursor: pointer;
+            text-shadow: 0 0 10px #00ffea;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex justify-center items-center h-screen">
+    <img src="https://www.notion.so/image/https:%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F50089f3d-bf26-4f6f-81f8-33547b2223cf%2Fd22d87f4-d766-400f-b906-671de2d909af%2Fa.m.s._39297.png?table=block&id=96ff775f-871b-478a-bb7a-03fdd16a8894&cache=v2" alt="Background Image" class="bg-image">
+    
+    <div class="w-full max-w-md p-8 form-container">
+        <h2 class="text-3xl font-bold text-center">Login / Register</h2>
+        <form id="authForm" class="mt-6">
+            <div class="mb-4">
+                <label class="block mb-2">Email</label>
+                <input type="email" id="email" class="w-full p-3 rounded-lg input-field text-gray-900" required>
+            </div>
+            <div class="mb-4">
+                <label class="block mb-2">Password</label>
+                <input type="password" id="password" class="w-full p-3 rounded-lg input-field text-gray-900" required>
+            </div>
+            <div id="nameField" class="mb-4 hidden">
+                <label class="block mb-2">Full Name</label>
+                <input type="text" id="username" class="w-full p-3 rounded-lg input-field text-gray-900">
+            </div>
+            <button type="submit" class="w-full py-3 rounded-lg font-semibold bg-blue-500 hover:bg-blue-600 text-white">Submit</button>
+        </form>
+        <p class="text-center mt-4">
+            <span class="toggle-button text-blue-400 hover:underline">Switch to Register</span>
+        </p>
+    </div>
+
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const nameField = document.getElementById('nameField');
+        const authForm = document.getElementById('authForm');
+        let isRegistering = false;
+
+        toggleButton.addEventListener('click', () => {
+            isRegistering = !isRegistering;
+            if (isRegistering) {
+                nameField.classList.remove('hidden');
+                toggleButton.textContent = 'Switch to Login';
+            } else {
+                nameField.classList.add('hidden');
+                toggleButton.textContent = 'Switch to Register';
+            }
+        });
+        document.getElementById("authForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const username = isRegistering ? document.getElementById("username").value : null;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const endpoint = isRegistering ? "/register" : "/login";
+        const payload = isRegistering ? { username, email, password } : { email, password };
+
+        try {
+            const response = await fetch(`http://127.0.0.1:5000${endpoint}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to submit form.");
+            }
+
+            const data = await response.json();
+            alert(data.message);
+        if (!isRegistering) {
+            window.location.href = "homepage.html"; // change to your homepage path
+        }
+        } catch (error) {
+            alert("Error: " + error.message);
+        }
+    });
+
+    </script>
+</body>
+</html>

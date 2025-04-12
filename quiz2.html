@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interface</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle at center, #001f3f, #000);
+            color: #ffffff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 80px 20px 40px 20px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #111;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #00c3ff;
+        }
+        .quiz-container {
+            max-width: 600px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #00c3ff;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            background-color: #292929;
+            border: 2px solid #00c3ff;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .options li:hover {
+            background-color: #00c3ff;
+            color: #121212;
+            transform: scale(1.05);
+        }
+        .next-btn, .roadmap-btn, .chat-btn {
+            margin-top: 20px;
+            background-color: #00c3ff;
+            color: #121212;
+            padding: 10px 15px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            margin-right: 10px;
+        }
+        .next-btn:hover, .roadmap-btn:hover, .chat-btn:hover {
+            background-color: #008abf;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #00ff88;
+        }
+        .roadmap-container {
+            max-width: 800px;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            margin-top: 30px;
+            text-align: left;
+            white-space: pre-line;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        
+        .roadmap-container h3 {
+            color: #00c3ff;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar py-4 w-full fixed top-0 flex justify-around text-white">
+        <a href="homepage.html">Home</a>
+        <a href="subjects.html">Select Your Subject</a>
+        <a href="#level-selection">Know Your Level</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="about.html">About Us</a>
+    </nav>
+    <div class="quiz-container">
+        <h1>Python Quiz</h1>
+        <h2 id="question">Loading...</h2>
+        <h3 id="score"> </h3>
+        <ul class="options" id="options"></ul>
+        <button class="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+    
+    <script>
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        async function loadQuestions() {
+            try {
+                const selectedLevel = localStorage.getItem("selectedLevel") || "beginner"; // default fallback
+
+                let fileName = "";
+
+                if (selectedLevel === "beginner") {
+                    fileName = "static/pythonBig.json";
+                } else if (selectedLevel === "intermediate") {
+                    fileName = "static/pythonInter.json";
+                } else if (selectedLevel === "advanced") {
+                    fileName = "static/pythonAd.json";
+                }
+
+                const response = await fetch(fileName); // Load based on selected level
+                questions = await response.json();
+
+                displayQuestion();
+            } catch (error) {
+                console.error('Error loading questions:', error);
+            }
+        }
+        
+        function displayQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                submitQuiz(); // Send results to backend when quiz ends
+                return;
+            }
+            
+            let questionData = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = questionData.Ques;
+            
+            let optionsHTML = '';
+            let optionsArray = questionData.Options.split(', ');
+            optionsArray.forEach(option => {
+                optionsHTML += `<li onclick="selectAnswer('${option}')">${option}</li>`;;
+            });
+            document.getElementById('options').innerHTML = optionsHTML;
+        }
+        
+        function selectAnswer(selected) {
+            let currentOptions = document.querySelectorAll('.options li');
+            
+            // Disable all options after selection
+            currentOptions.forEach(li => {
+                li.style.pointerEvents = 'none';
+            });
+            
+            let questionData = questions[currentQuestionIndex];
+            let qid = questionData.Qid || currentQuestionIndex;
+            
+            // Mark all options as incorrect by default
+            currentOptions.forEach(li => {
+                li.style.backgroundColor = '#292929';
+            });
+
+            // Find the clicked option and mark it
+            let selectedElement = Array.from(currentOptions).find(li => li.textContent === selected);
+            let correctAnswer = questions[currentQuestionIndex]['Correct Answer'];
+            
+            if (selected === correctAnswer) {
+                selectedElement.style.backgroundColor = '#00ff88';
+                selectedElement.style.color = '#121212';
+                score++; // Increase score
+            } else {
+                selectedElement.style.backgroundColor = '#ff4d4d';
+                
+                // Find and highlight the correct answer
+                let correctElement = Array.from(currentOptions).find(li => li.textContent === correctAnswer);
+                if (correctElement) {
+                    correctElement.style.backgroundColor = '#00ff88';
+                    correctElement.style.color = '#121212';
+                }
+            }
+            
+            userAnswers.push({ Qid: qid, Selected: selected });
+        }
+        
+        function nextQuestion() {
+            currentQuestionIndex++;
+            displayQuestion();
+        }
+        
+        async function submitQuiz() {
+            const level = localStorage.getItem("selectedLevel") || "beginner"; // Change dynamically based on quiz type
+            const requestData = { level, answers: userAnswers };
+
+            try {
+                const response = await fetch('/evaluate_quiz', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestData),
+                });
+
+                const result = await response.json();
+
+                // Display the final result
+                document.querySelector('.quiz-container').innerHTML = `
+                    <h2>Quiz Completed!</h2>
+                    <p>Your Score: ${score}/${questions.length}</p>
+                    <p><strong>${result.status}</strong></p>
+                    <p><strong>Next Level:</strong> ${result.next_level}</p>
+                    <p><strong>Strengths:</strong> ${result.strengths.join(', ') || 'None identified'}</p>
+                    <p><strong>Weaknesses:</strong> ${result.weaknesses.join(', ') || 'None identified'}</p>
+                    <div>
+                        <button class="roadmap-btn" onclick="getRoadmap()">Get Learning Roadmap</button>
+                        <button class="chat-btn" onclick="window.location.href='chat.html'">Chat with Tutor</button>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error submitting quiz:', error);
+            }
+        }
+        
+        async function getRoadmap() {
+            try {
+                const response = await fetch('/api/roadmap');
+                const data = await response.json();
+                
+                // Create roadmap container
+                const roadmapContainer = document.createElement('div');
+                roadmapContainer.className = 'roadmap-container';
+                roadmapContainer.innerHTML = `
+                    <h3>Your Personalized Learning Roadmap</h3>
+                    <div>${data.response}</div>
+                `;
+                
+                // Add the roadmap after the quiz container
+                document.querySelector('.quiz-container').after(roadmapContainer);
+                
+                // Hide the roadmap button after it's clicked
+                document.querySelector('.roadmap-btn').style.display = 'none';
+                
+                // Scroll to the roadmap
+                roadmapContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch (error) {
+                console.error('Error getting roadmap:', error);
+            }
+        }
+        
+        window.onload = loadQuestions;
+    </script>
+</body>
+</html>
