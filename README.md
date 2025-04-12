@@ -27,6 +27,6 @@ Enhances engagement through gamification.
 Provides data-driven insights into student performance.  
 
 ## Setup:
-1.Download the zip file and extract
-2.Install the dependencies in requirements.txt
-3.Run in terminal using: python app.py
+1.Download the zip file and extract.
+2.Install the dependencies in requirements.txt.
+3.Run in terminal using: python app.py.
