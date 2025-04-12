@@ -1,0 +1,165 @@
+[
+  {
+    "Qid": "PB1",
+    "Ques": "Which of the following is a mutable data type in Python?",
+    "Options": "A) Tuple, B) List, C) String, D) Set",
+    "Correct Answer": "B) List",
+    "Difficulty": "Beginner",
+    "Subtopic": "Data Types"
+  },
+  {
+    "Qid": "PB2",
+    "Ques": "What will be the output of `print(\"5\" + str(10))`?",
+    "Options": "A) 15, B) 510, C) Error, D) None",
+    "Correct Answer": "B) 510",
+    "Difficulty": "Beginner",
+    "Subtopic": "Type Conversion"
+  },
+  {
+    "Qid": "PB3",
+    "Ques": "What will the following loop print? `for i in range(1, 6, 2): print(i, end=' ')`",
+    "Options": "A) 1 2 3 4 5, B) 1 3 5, C) 1 4, D) 1 3 6",
+    "Correct Answer": "B) 1 3 5",
+    "Difficulty": "Beginner",
+    "Subtopic": "Loops"
+  },
+  {
+    "Qid": "PB4",
+    "Ques": "Which statement correctly checks if `num` is even?",
+    "Options": "A) `if num % 2:`, B) `if num / 2 == 0:`, C) `if num % 2 == 0:`, D) `if num // 2:`",
+    "Correct Answer": "C) `if num % 2 == 0:`",
+    "Difficulty": "Beginner",
+    "Subtopic": "Conditional Statements"
+  },
+  {
+    "Qid": "PB5",
+    "Ques": "What is the output of this function? `def test(a=10, b=20): return a + b print(test(5))`",
+    "Options": "A) 15, B) 25, C) 30, D) Error",
+    "Correct Answer": "B) 25",
+    "Difficulty": "Beginner",
+    "Subtopic": "Functions"
+  },
+  {
+    "Qid": "PB6",
+    "Ques": "How can you read all lines from a file called `data.txt`?",
+    "Options": "A) `open(`data.txt`).readlines()`, B) `open(`data.txt`,`w`).readlines()`, C) `open(`data.txt`,`r`).read()`, D) `readfile(`data.txt`)`",
+    "Correct Answer": "A) `open(`data.txt`).readlines()`",
+    "Difficulty": "Beginner",
+    "Subtopic": "File Handling"
+  },
+  {
+    "Qid": "PB7",
+    "Ques": "Which keyword is used to handle exceptions in Python?",
+    "Options": "A) `catch`, B) `except`, C) `try`, D) `finally`",
+    "Correct Answer": "B) `except`",
+    "Difficulty": "Beginner",
+    "Subtopic": "Exception Handling"
+  },
+  {
+    "Qid": "PB8",
+    "Ques": "What does this lambda function return? `add = lambda x, y: x * y; print(add(3, 4))`",
+    "Options": "A) 7, B) 12, C) Error, D) (3,4)",
+    "Correct Answer": "B) 12",
+    "Difficulty": "Beginner",
+    "Subtopic": "Lambda Functions"
+  },
+  {
+    "Qid": "PB9",
+    "Ques": "What is the output of: print(type({}))?",
+    "Options": "A) list, B) tuple, C) dict, D) set",
+    "Correct Answer": "C) dict",
+    "Difficulty": "Beginner",
+    "Subtopic": "Basic Syntax & Data Types"
+  },
+  {
+    "Qid": "PB10",
+    "Ques": "Which of the following is an immutable data type?",
+    "Options": "A) List, B) Dictionary, C) Tuple, D) Set",
+    "Correct Answer": "C) Tuple",
+    "Difficulty": "Beginner",
+    "Subtopic": "Variables, Constants, Data Types"
+  },
+  {
+    "Qid": "PB11",
+    "Ques": "What does the continue' statement do in a loop?",
+    "Options": "A) Stops the loop, B) Skips current iteration, C) Repeats the current iteration, D) Exits the program ",
+    "Correct Answer": "B) Skips current iteration",
+    "Difficulty": "Beginner",
+    "Subtopic": "Control Flow"
+  },
+  
+  {
+    "Qid": "PB12",
+    "Ques": "Which keyword is used to define a function in Python?",
+    "Options": "A) func, B) define, C) def, D) function ",
+    "Correct Answer": "C) def",
+    "Difficulty": "Beginner",
+    "Subtopic": "Functions & Modules"
+  },
+  
+  {
+    "Qid": "PB13",
+    "Ques": "How do you open a file for writing in Python?",
+    "Options": "A) open('file.txt','r')', 'B) open('file.txt','w')', 'C) open('file.txt','x')', 'D) open('file.txt','a')'",
+    "Correct Answer": "B) open('file.txt','w')",
+    "Difficulty": "Beginner",
+    "Subtopic": "File Handling"
+  },
+  {
+    "Qid": "PB14",
+    "Ques": "Which exception is raised when dividing by zero?",
+    "Options": " A) TypeError, B) ValueError, C) ZeroDivisionError, D) IndexError ",
+    "Correct Answer": "C) ZeroDivisionError",
+    "Difficulty": "Beginner",
+    "Subtopic": "Exception Handling"
+  },
+  
+  {
+    "Qid": "PB15",
+    "Ques": "Which module helps in handling JSON data in Python?",
+    "Options": "A) json, B) csv, C) os, D) sys",
+    "Correct Answer": "A) json",
+    "Difficulty": "Beginner",
+    "Subtopic": "Python Standard Library & Built-in Functions"
+  },
+  {
+    "Qid": "PB16",
+    "Ques": "What is the correct way to declare a variable in Python?",
+    "Options": "A) var x = 10, B) x := 10, C) x = 10, D) int x = 10",
+    "Correct Answer": "C) x = 10",
+    "Difficulty": "Beginner",
+    "Subtopic": "Variables & Data Types"
+  },
+  {
+    "Qid": "PB17",
+    "Ques": "Which symbol is used for single-line comments in Python?",
+    "Options": "A) //, B) #, C) /* */, D) \"\"",
+    "Correct Answer": "B) #",
+    "Difficulty": "Beginner",
+    "Subtopic": "Basic Syntax"
+  },
+  {
+    "Qid": "PB18",
+    "Ques": "What will be the output of print(5 / 2) in Python 3?",
+    "Options": "A) 2, B) 2.5, C) 2.0, D) Error",
+    "Correct Answer": "B) 2.5",
+    "Difficulty": "Beginner",
+    "Subtopic": "Operators & Type Conversion"
+  },
+  {
+    "Qid": "PB19",
+    "Ques": "Which of the following is an immutable data type in Python?",
+    "Options": "A) list, B) set, C) tuple, D) dict",
+    "Correct Answer": "C) tuple",
+    "Difficulty": "Beginner",
+    "Subtopic": "Data Types"
+  },
+  {
+    "Qid": "PB20",
+    "Ques": "How do you define a function in Python?",
+    "Options": "A) function myFunc():, B) def myFunc():, C) myFunc():, D) define myFunc():",
+    "Correct Answer": "B) def myFunc():",
+    "Difficulty": "Beginner",
+    "Subtopic": "Functions"
+  }
+]

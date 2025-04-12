@@ -1,0 +1,123 @@
+
+ [
+ {
+    "Qid": "PA1",
+    "Ques": "Which decorator is used to define a function inside a class that doesn't need `self`?",
+    "Options": "A) `@staticmethod`, B) `@classmethod`, C) `@abstractmethod`, D) `@property`",
+    "Correct Answer": "A) `@staticmethod`",
+    "Difficulty": "Advanced",
+    "Subtopic": "OOP"
+  },
+  {
+    "Qid": "PA2",
+    "Ques": "Which of the following correctly uses multithreading? `import threading; def print_numbers(): for i in range(3): print(i); thread = threading.Thread(target=______)`",
+    "Options": "A) `print_numbers()`, B) `print_numbers`, C) `thread.run()`, D) None",
+    "Correct Answer": "B) `print_numbers`",
+    "Difficulty": "Advanced",
+    "Subtopic": "Multithreading"
+  },
+  {
+    "Qid": "PA3",
+    "Ques": "What will be the output of the regex operation? `import re; pattern = r'\\d+'; result = re.findall(pattern, 'Age: 23, Height: 175cm'); print(result)`",
+    "Options": "A) [`23`,`175`], B) [`Age:`,`Height:`], C) [`23 175`], D) Error",
+    "Correct Answer": "A) [`23`,`175`]",
+    "Difficulty": "Advanced",
+    "Subtopic": "Regular Expressions"
+  },
+  {
+    "Qid": "PA4",
+    "Ques": "Which method in the `os` module is used to get the current working directory?",
+    "Options": "A) `os.getcwd()`, B) `os.getdir()`, C) `os.listdir()`, D) `os.pwd()`",
+    "Correct Answer": "A) `os.getcwd()`",
+    "Difficulty": "Advanced",
+    "Subtopic": "OS Module"
+  },
+  {
+    "Qid": "PA5",
+    "Ques": "What will be the output of print(type({})) in Python 3?",
+    "Options": "A) <class 'dict'>, B) <class 'set'>, C) <class 'list'>, D) <class 'tuple'>",
+    "Correct Answer": "A) <class 'dict'>",
+    "Difficulty": "Advanced",
+    "Subtopic": "Data Types"
+  },
+  {
+    "Qid": "PA6",
+    "Ques": "Which of the following conversions will raise an error?",
+    "Options": "A) int(`10.5`), B) float(`10`), C) str(10.5), D) list(`abc`)",
+    "Correct Answer": "A) int(`10.5`)",
+    "Difficulty": "Advanced",
+    "Subtopic": "Type Conversion"
+  },
+  {
+    "Qid": "PA7",
+    "Ques": "What does the *args parameter allow a function to do?",
+    "Options": "A) Accept any number of positional arguments, B) Accept keyword arguments, C) Return multiple values, D) Execute lambda functions",
+    "Correct Answer": "A) Accept any number of positional arguments",
+    "Difficulty": "Advanced",
+    "Subtopic": "Function Arguments"
+  },
+  {
+    "Qid": "PA8",
+    "Ques": "What will be the output of lambda x, y: x * y (2,3)?",
+    "Options": "A) 6, B) 2, C) Error, D) None",
+    "Correct Answer": "C) Error",
+    "Difficulty": "Advanced",
+    "Subtopic": "Lambda Functions"
+  },
+  {
+    "Qid": "PA9",
+    "Ques": "Which module should be imported to generate a random integer?",
+    "Options": "A) math, B) os, C) sys, D) random",
+    "Correct Answer": "D) random",
+    "Difficulty": "Advanced",
+    "Subtopic": "Modules"
+  },
+  {
+    "Qid": "PA10",
+    "Ques": "What is the correct way to write to a file in Python?",
+    "Options": "A) open(`file.txt`,`w`).write(`Hello`), B) with open(`file.txt`,`w`) as f: f.write(`Hello`), C) f = open(`file.txt`,`w`) f.write(`Hello`) f.close(), D) All of the above",
+    "Correct Answer": "D) All of the above",
+    "Difficulty": "Advanced",
+    "Subtopic": "File Handling"
+  },
+  {
+    "Qid": "PA11",
+    "Ques": "What happens if an exception is raised inside a finally block?",
+    "Options": "A) It is ignored, B) It is handled normally, C) It stops the program execution, D) It is converted into a warning",
+    "Correct Answer": "C) It stops the program execution",
+    "Difficulty": "Advanced",
+    "Subtopic": "Exception Handling"
+  },
+  {
+    "Qid": "PA12",
+    "Ques": "Which type of inheritance is not supported in Python?",
+    "Options": "A) Multiple, B) Multilevel, C) Hybrid, D) None of the above",
+    "Correct Answer": "D) None of the above",
+    "Difficulty": "Advanced",
+    "Subtopic": "OOP - Inheritance"
+  },
+  {
+    "Qid": "PA13",
+    "Ques": "What will print(obj) output if __str__ and __repr__ are both defined?",
+    "Options": "A) Calls __repr__, B) Calls __str__, C) Error, D) None",
+    "Correct Answer": "B) Calls __str__",
+    "Difficulty": "Advanced",
+    "Subtopic": "OOP - Magic Methods"
+  },
+  {
+    "Qid": "PA14",
+    "Ques": "What will sys.argv return when running a script?",
+    "Options": "A) List of command-line arguments, B) The script name, C) The current working directory, D) Environment variables",
+    "Correct Answer": "A) List of command-line arguments",
+    "Difficulty": "Advanced",
+    "Subtopic": "OS & sys Modules"
+  },
+  {
+    "Qid": "PA15",
+    "Ques": "Which method should be used to load JSON data from a file?",
+    "Options": "A) json.dump(), B) json.load(), C) json.parse(), D) json.loads()",
+    "Correct Answer": "B) json.load()",
+    "Difficulty": "Advanced",
+    "Subtopic": "JSON Handling"
+  }
+]

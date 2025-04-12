@@ -1,0 +1,153 @@
+[{
+    "Qid": "PI1",
+    "Ques": "What is the purpose of the `__init__` method in a Python class?",
+    "Options": "A) To initialize an object’s attributes, B) To destroy an object, C) To call another method, D) To execute only once",
+    "Correct Answer": "A) To initialize an object’s attributes",
+    "Difficulty": "Intermediate",
+    "Subtopic": "OOP"
+  },
+  {
+    "Qid": "PI2",
+    "Ques": "Which statement is true about `self` in Python?",
+    "Options": "A) It is a keyword, B) It must always be used in a function inside a class, C) It refers to the instance of the class, D) It refers to the class itself",
+    "Correct Answer": "C) It refers to the instance of the class",
+    "Difficulty": "Intermediate",
+    "Subtopic": "OOP"
+  },
+  {
+    "Qid": "PI3",
+    "Ques": "What will this code print? `class A: def __str__(self): return 'A'; class B(A): def __repr__(self): return 'B'; obj = B(); print(obj)`",
+    "Options": "A) A, B) B, C) None, D) Error",
+    "Correct Answer": "A) A",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Magic Methods"
+  },
+  {
+    "Qid": "PI4",
+    "Ques": "Which method correctly imports the `math` module and calculates the square root of 16?",
+    "Options": "A) `import math; print(math.sqrt(16))`, B) `import sqrt from math; print(sqrt(16))`, C) `import math.sqrt; print(sqrt(16))`, D) `import sqrt; print(math.sqrt(16))`",
+    "Correct Answer": "A) `import math; print(math.sqrt(16))`",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Modules"
+  },
+  {
+    "Qid": "PI5",
+    "Ques": "Which function should be used to count occurrences of elements in a list? `from collections import ______`",
+    "Options": "A) Counter, B) Defaultdict, C) OrderedDict, D) namedtuple",
+    "Correct Answer": "A) Counter",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Collections"
+  },
+  {
+    "Qid": "PI6",
+    "Ques": "How do you load a JSON file into a Python dictionary?",
+    "Options": "A) `json.load(file)`, B) `json.loads(file)`, C) `json.read(file)`, D) `file.json_read()`",
+    "Correct Answer": "A) `json.load(file)`",
+    "Difficulty": "Intermediate",
+    "Subtopic": "JSON Handling"
+  },
+{
+    "Qid": "PI7",
+    "Ques": "What is the output of: print(2**3**2)?",
+    "Options": "A) 512, B) 64, C) 16, D) 256 ",
+    "Correct Answer": "A) 512",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Operators"
+  },
+{
+    "Qid": "PI8",
+    "Ques": "What will be the output of: lambda x: x+2(5)?",
+    "Options": " A) 7, B) 5, C) 10, D) Error ",
+    "Correct Answer": "D) Error",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Functions & Modules"
+  },
+  {
+    "Qid": "PI9",
+    "Ques": "What is the purpose of '__str__' method in Python classes?",
+    "Options": "A) Initializes a class, B) Converts object to string, C) Deletes an object, D) Returns the class name ",
+    "Correct Answer": "B) Converts object to string",
+    "Difficulty": "Intermediate",
+    "Subtopic": "OOP"
+  },
+  {
+    "Qid": "PI10",
+    "Ques": "What will be the output of bool([]) in Python?",
+    "Options": "A) True, B) False, C) None, D) Error",
+    "Correct Answer": "B) False",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Data Types"
+  },
+  {
+    "Qid": "PI11",
+    "Ques": "What is the difference between is and == in Python?",
+    "Options": "A) is compares values, B) is compares memory location, C) Both are identical, D) is is only used with numbers",
+    "Correct Answer": "B) is compares memory location",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Operators"
+  },
+  {
+    "Qid": "PI12",
+    "Ques": "Which loop is used when the number of iterations is unknown?",
+    "Options": "A) for loop, B) while loop, C) do-while loop, D) repeat-until loop",
+    "Correct Answer": "B) while loop",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Loops"
+  },
+  {
+    "Qid": "PI13",
+    "Ques": "What will be the output of list(range(1, 5, 2))?",
+    "Options": "A) [1,2,3,4], B) [1,3], C) [1,5], D) [1,2 4]",
+    "Correct Answer": "B) [1,3]",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Loops"
+  },
+  {
+    "Qid": "PI14",
+    "Ques": "What happens if a function does not have a return statement?",
+    "Options": "A) Returns None, B) Returns 0, C) Causes an error, D) Returns False",
+    "Correct Answer": "A) Returns None",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Functions"
+  },
+  {
+    "Qid": "PI15",
+    "Ques": "What will be the output of print([i for i in range(10) if i % 2 == 0])?",
+    "Options": "A) [0,2,4,6,8], B) [1,3,5,7,9], C) [2,4,6,8,10], D) None",
+    "Correct Answer": "A) [0,2,4,6,8]",
+    "Difficulty": "Intermediate",
+    "Subtopic": "List Comprehension"
+  },
+  {
+    "Qid": "PI16",
+    "Ques": "What will lambda x, y=2: x * y return when called as f(3)?",
+    "Options": "A) 6, B) None, C) Error, D) 3",
+    "Correct Answer": "A) 6",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Lambda Functions"
+  },
+  {
+    "Qid": "PI17",
+    "Ques": "Which of the following modules is used for date and time manipulation?",
+    "Options": "A) os, B) sys, C) time, D) datetime",
+    "Correct Answer": "D) datetime",
+    "Difficulty": "Intermediate",
+    "Subtopic": "Modules"
+  },
+  {
+    "Qid": "PI18",
+    "Ques": "What will be the output of print(\"Hello\".replace('l', 'x', 1))?",
+    "Options": "A) Hexlo, B) HeXXo, C) Hxllo, D) Error",
+    "Correct Answer": "C) Hxllo",
+    "Difficulty": "Intermediate",
+    "Subtopic": "String Manipulation"
+  },
+  {
+    "Qid": "PI19",
+    "Ques": "How do you read all lines from a file in Python?",
+    "Options": "A) file.read(), B) file.readlines(), C) file.readline(), D) file.readLine()",
+    "Correct Answer": "B) file.readlines()",
+    "Difficulty": "Intermediate",
+    "Subtopic": "File Handling"
+  }
+]
